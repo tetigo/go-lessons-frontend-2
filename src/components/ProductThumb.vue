@@ -1,6 +1,6 @@
 <template>
   <div class="card" style="width: 12rem;">
-    <img src="@/assets/botties.jpg" class="card-img-top" alt="little booties" />
+    <img :src="imageUrl" class="card-img-top" alt="little booties" />
     <div class="card-body">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">
@@ -20,6 +20,7 @@ export default {
     title: String,
     price: String,
     additionalInfo: String,
+    imageUrl: String,
   },
 }
 </script>

@@ -50,7 +50,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .carousel-custom {
   max-width: 600px;
 }

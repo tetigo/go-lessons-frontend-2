@@ -7,33 +7,18 @@
       </div>
     </div>
     <h3 class="mt-3">Popular Products</h3>
+
     <div class="row">
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
+      <div
+        v-for="product in products"
+        :key="product.id"
+        class="col-12 col-md-3 d-flex justify-content-center mt-3"
+      >
         <ProductThumb
-          price="12 EUR"
-          title="Product Name1"
-          additionalInfo="New"
-        />
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumb
-          price="15 EUR"
-          title="Product Name2"
-          additionalInfo="New"
-        />
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumb
-          price="17 EUR"
-          title="Product Name3"
-          additionalInfo="New"
-        />
-      </div>
-      <div class="col-12 col-md-3 d-flex justify-content-center mt-3">
-        <ProductThumb
-          price="11 EUR"
-          title="Product Name4"
-          additionalInfo="New"
+          :title="product.name"
+          :price="product.totalPrice.display"
+          :additionalInfo="product.shortDescription"
+          :imageUrl="product.image"
         />
       </div>
     </div>
@@ -53,20 +38,26 @@ export default {
     CarouselItem,
     ProductThumb,
   },
+  data() {
+    return {
+      products: null,
+      categories: null,
+    }
+  },
   created() {
     WebServices.getProducts()
       .then((res) => {
-        alert(res.data)
+        this.products = res.data
       })
       .catch((err) => {
-        alert(err)
+        console.log(err)
       })
     WebServices.getCategories()
       .then((res) => {
-        alert(res.data)
+        this.categories = res.data
       })
       .catch((err) => {
-        alert(err)
+        console.log(err)
       })
   },
 }
